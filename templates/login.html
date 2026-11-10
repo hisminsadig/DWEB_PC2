@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Acceso{% endblock %}
+{% block content %}
+<main class="login-page">
+  <section class="login-card" aria-labelledby="login-title">
+    <div class="login-badge"><span aria-hidden="true">◈</span> ACCESO SEGURO</div>
+    <h1 id="login-title">CONTROL DE GASTOS</h1>
+    <div class="login-logo"><img src="{{ logo_url }}" alt="Logo principal"><span class="logo-divider" aria-hidden="true"></span><img src="{{ logo_secundario_url }}" alt="Logo UPRIT"></div>
+    <form method="post" class="login-form">
+      <label for="usuario">USUARIO</label>
+      <div class="login-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        <input id="usuario" name="usuario" autocomplete="username" required placeholder="Tu usuario" autofocus>
+      </div>
+      <label for="clave">CONTRASEÑA</label>
+      <div class="login-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <input id="clave" name="clave" type="password" autocomplete="current-password" required placeholder="Tu contraseña">
+        <button class="password-toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false" onclick="const field=document.getElementById('clave');const visible=field.type==='password';field.type=visible?'text':'password';this.setAttribute('aria-label',visible?'Ocultar contraseña':'Mostrar contraseña');this.setAttribute('aria-pressed',String(visible))">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+        </button>
+      </div>
+      <button class="login-submit" type="submit">INGRESAR</button>
+    </form>
+    <footer class="login-footer"><span>{{ pie_login }}</span><strong>{{ marca_login }}</strong></footer>
+  </section>
+</main>
+{% endblock %}

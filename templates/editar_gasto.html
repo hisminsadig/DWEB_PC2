@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Editar gasto{% endblock %}
+{% block content %}
+<main class="container edit-container">
+  <div class="page-head"><div><h1>Editar gasto<span class="accent">.</span></h1></div><a class="button secondary" href="{{ url_for('inicio', pagina=pagina, por_pagina=por_pagina) }}">Cancelar</a></div>
+  <section class="panel edit-panel">
+    <div class="panel-head"><div><h2>Datos del gasto</h2></div></div>
+    <form method="post" class="form-stack">
+      <input type="hidden" name="csrf_token" value="{{ csrf_gastos }}">
+      <input type="hidden" name="pagina" value="{{ pagina }}">
+      <input type="hidden" name="por_pagina" value="{{ por_pagina }}">
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" name="fecha" value="{{ gasto.fecha }}" required>
+      <label for="descripcion">Descripción</label>
+      <input id="descripcion" name="descripcion" value="{{ gasto.descripcion }}" maxlength="200" required>
+      <label for="monto">Monto (S/)</label>
+      <input id="monto" name="monto" type="number" min="0.01" step="0.01" value="{{ '%.2f'|format(gasto.monto_centavos / 100) }}" required>
+      <button class="button primary" type="submit">Guardar cambios</button>
+    </form>
+  </section>
+</main>
+{% endblock %}

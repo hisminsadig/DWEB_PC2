@@ -1,4 +1,4 @@
-# GastoClaro
+# SISTEMA DE CONTROL DE GASTOS
 
 Aplicación web para registrar gastos personales con Flask, Python y SQLite.
 

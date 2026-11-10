@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="ITeMH">
+  <title>{% block title %}Mis gastos{% endblock %} · {{ nombre_sitio }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='37') }}">
+  <script src="{{ url_for('static', filename='app.js', v='1') }}" defer></script>
+</head>
+<body class="{{ 'app-page' if session.get('usuario') else 'auth-page' }}">
+  {% if session.get('usuario') %}
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="{{ url_for('inicio') }}"><img class="brand-logo" src="{{ url_for('static', filename='logo/uprit.png') }}" alt="Logo UPRIT"> <span>UNIVERSIDAD PRIVADA<br>DE TRUJILLO</span></a><nav aria-label="Navegación principal"><a href="{{ url_for('inicio') }}" class="{{ 'active' if request.endpoint == 'inicio' else '' }}">Inicio</a><a href="{{ url_for('reporte') }}" class="{{ 'active' if request.endpoint == 'reporte' else '' }}">Reporte</a><a href="{{ url_for('configurar') }}" class="{{ 'active' if request.endpoint == 'configurar' else '' }}">Configurar</a><form action="{{ url_for('logout') }}" method="post"><button class="nav-button">Salir</button></form></nav></div></header>
+  {% endif %}
+  {% with mensajes = get_flashed_messages(with_categories=true) %}{% if mensajes %}<div class="flash-wrap">{% for categoria, mensaje in mensajes %}<div class="flash {{ categoria }}">{{ mensaje }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+  {% block content %}{% endblock %}
+  {% if session.get('usuario') %}<footer class="app-footer"><div><span>{{ pie_panel }}</span></div></footer>{% endif %}
+</body>
+</html>
